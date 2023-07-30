@@ -1,0 +1,82 @@
+.newbooksPage-container {
+  padding: 20px;
+  border: 1px solid rgba(31, 38, 135, 0.18);
+  border-radius: 10px;
+  margin: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 80%;
+  width: 100%;
+}
+.newbooksPage-container-info {
+  background-color: white;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 4;
+  border: 1px solid;
+  padding: 15px;
+  border-radius: 10px;
+}
+.newbooksPage-container-info h3 {
+  text-decoration: underline;
+}
+.newbooksPage-container-info input,
+.newbooksPage-container-info select {
+  border: 1px solid rgb(124, 124, 124);
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+.newbooksPage-container-info-error {
+  margin: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.newbooksPage-container-info-error span {
+  background-color: rgb(255, 70, 70);
+  border-radius: 25px;
+  color: white;
+  font-weight: 500;
+  padding: 0px 5px;
+  margin-bottom: 5px;
+  display: block;
+  width: 100%;
+}
+.newbooksPage-container-info-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.newbooksPage-container-info-button button {
+  border: 1px solid white;
+  background-color: rgb(124, 124, 124);
+  display: flex;
+  color: white;
+  border-radius: 15px;
+  padding: 5px;
+  transition: 0.5s;
+  padding: 5px 10px;
+  margin: 5px;
+}
+.newbooksPage-container-info-button button:hover {
+  border-color: rgb(124, 124, 124);
+  background-color: white;
+  color: rgb(124, 124, 124);
+}
+.newbooksPage-container .newbooksSynopsis {
+  padding: 0;
+  margin: 10px 0;
+  width: 100%;
+  height: 100px;
+}/*# sourceMappingURL=NewBooks.css.map */

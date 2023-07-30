@@ -1,0 +1,109 @@
+@import "./Varibles/Varibles.scss";
+
+.booksReview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.booksPage-container {
+  @include pageContainer();
+  flex-direction: row;
+  width: 100%;
+
+  //UPDATE
+
+  .newbooksInf {
+    .update-error {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 100%;
+
+      span {
+        @include errorMessage();
+        display: block;
+        width: 100%;
+      }
+    }
+
+    input,
+    select {
+      border: 1px solid $pink;
+      padding: 5px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+  }
+
+  //UPDATE
+
+  .booksInf {
+    background-color: white;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 4;
+    border: 1px solid;
+    padding: 15px;
+    border-radius: 10px;
+
+    p,
+    h4,
+    h3 {
+      padding: 0;
+      margin: 0;
+    }
+
+    p,
+    h4 {
+      color: $pink;
+    }
+
+    h3,
+    h2 {
+      color: black;
+      text-decoration: underline;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      margin: 5px;
+    }
+
+    .books-name-ratio {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .booksImg {
+    width: 270px;
+    height: 400px;
+    @include booksImg();
+  }
+
+  .booksTexts {
+    text-align: justify;
+  }
+
+  .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @include comment-buttons($pink, white);
+  }
+}

@@ -1,0 +1,101 @@
+@import "../Varibles/Varibles.scss";
+
+.booksList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 10px;
+  flex-direction: row;
+  min-width: 100px;
+  min-height: 300px;
+  text-decoration: none;
+}
+
+.booksList img {
+  width: 270px;
+  height: 350px;
+  position: relative;
+  left: 10px;
+  border-radius: 7px;
+  border: 2px solid white;
+  -webkit-box-shadow: 10px 10px 62px -42px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 62px -42px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 62px -42px rgba(0, 0, 0, 0.75);
+}
+
+.booksText {
+  color: black;
+  display: flex;
+  border-radius: 7px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 270px;
+  height: 400px;
+  background-color: $pink;
+  margin-left: 5px;
+  border: 2px solid $pink;
+
+  .booksName {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-bottom: 5px;
+  }
+
+  .synopsis {
+    overflow-y: scroll;
+    text-align: justify;
+    padding: 5px;
+    color: whitesmoke;
+    font-size: 14px;
+  }
+
+  h3 {
+    background-color: white;
+    color: black;
+    width: 100%;
+    font-size: 20px;
+  }
+}
+
+.synopsis::-webkit-scrollbar {
+  width: 7px;
+}
+
+.synopsis::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 5px;
+}
+
+@media (max-width: map-get($breakpoints, "sm")) {
+  .booksList:hover > .booksText {
+    opacity: 0.9;
+    visibility: visible;
+  }
+
+  .booksList {
+    transition: all 500ms ease-out;
+    max-width: 270px;
+    max-height: 385px;
+
+    img {
+      left: 0;
+      box-shadow: none;
+      height: 400px;
+    }
+  }
+
+  .booksText {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transition: all 500ms ease-out;
+    visibility: hidden;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
