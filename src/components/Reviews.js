@@ -13,7 +13,7 @@ function Reviews({ booksComments, booksPageId }) {
   const [booksCommentsList, setbooksCommentsList] = useState([]);
 
   useEffect(() => {
-    Axios.get("https://server-anime-reviews.vercel.app/api/comments").then(
+    Axios.get("https://backend-controlbox.vercel.app/api/comments").then(
       (response) => {
         setbooksCommentsList(response.data);
       }
@@ -22,7 +22,7 @@ function Reviews({ booksComments, booksPageId }) {
 
   const submitComment = async (e) => {
     try {
-      await Axios.post("https://server-anime-reviews.vercel.app/api/comments", {
+      await Axios.post("https://backend-controlbox.vercel.app/api/comments", {
         commentText: e.commentText,
         ratio: e.ratio,
         userId: currentUser.id,

@@ -10,7 +10,7 @@ export const AuthContexProvider = ({ children }) => {
 
   const login = async (nameLogin, passLogin) => {
     const res = await axios.post(
-      "https://server-anime-reviews.vercel.app/api/auth/login",
+      "https://backend-controlbox.vercel.app/api/auth/login",
       {
         username: nameLogin,
         userpassword: passLogin,
@@ -20,7 +20,7 @@ export const AuthContexProvider = ({ children }) => {
   };
 
   const logout = async (input) => {
-    await axios.post("https://server-anime-reviews.vercel.app/api/auth/logout");
+    await axios.post("https://backend-controlbox.vercel.app/api/auth/logout");
     setCurrentUser(null);
   };
 

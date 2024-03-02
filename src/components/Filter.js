@@ -16,26 +16,10 @@ function Filter({ filterName, filterTags }) {
                 </Link>
               </li>
             );
-          } else if (filterTags[1] === "Shounen") {
-            return (
-              <li className="active" key={filter}>
-                <Link className="link" to={`/?category=${filter}`}>
-                  {filter}
-                </Link>
-              </li>
-            );
-          } else if (filterTags[1] === "Movie") {
-            return (
-              <li className="active" key={filter}>
-                <Link className="link" to={`/?type=${filter}`}>
-                  {filter}
-                </Link>
-              </li>
-            );
           } else {
             return (
               <li className="active" key={filter}>
-                <Link className="link" to={`/?status=${filter}`}>
+                <Link className="link" to={`/?categoria=${filter}`}>
                   {filter}
                 </Link>
               </li>

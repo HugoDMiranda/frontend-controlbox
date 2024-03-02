@@ -14,21 +14,21 @@ function Comments({ booksComments }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    Axios.get(
-      `https://server-anime-reviews.vercel.app/api/comments/users`
-    ).then((response) => {
-      setUsers(response.data);
-    });
+    Axios.get(`https://backend-controlbox.vercel.app/api/comments/users`).then(
+      (response) => {
+        setUsers(response.data);
+      }
+    );
   }, []);
 
   const deleteComment = (id) => {
-    Axios.delete(`https://server-anime-reviews.vercel.app/api/comments/${id}`);
+    Axios.delete(`https://backend-controlbox.vercel.app/api/comments/${id}`);
   };
 
   const updateComment = async (e) => {
     try {
       await Axios.put(
-        `https://server-anime-reviews.vercel.app/api/comments/${id}`,
+        `https://backend-controlbox.vercel.app/api/comments/${id}`,
         {
           id: id,
           newComment: e.newComment,

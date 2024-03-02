@@ -16,26 +16,30 @@ function Home() {
   const [searchInput, setSearchInput] = useState("");
   const [comentarios, setComentarios] = useState([]);
 
-  const category = useLocation().search;
+  const categoria = useLocation().search;
 
-  const filterSearch = booksReviewsList.filter((books) => {
-    return searchInput.toLowerCase() === ""
-      ? books
-      : searchInput === "0-9"
-      ? books.animeName.includes(0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9)
-      : books.animeName.toLowerCase().startsWith(searchInput);
-  });
+  const filterSearch = Array.isArray(booksReviewsList)
+    ? booksReviewsList.filter((books) => {
+        return searchInput.toLowerCase() === ""
+          ? books
+          : searchInput === "0-9"
+          ? books.booksTitulo.includes(
+              0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9
+            )
+          : books.booksTitulo.toLowerCase().startsWith(searchInput);
+      })
+    : [];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const rescom = await Axios.get(
-          `https://server-anime-reviews.vercel.app/api/comments`
+          `https://backend-controlbox.vercel.app/api/comments`
         );
         setComentarios(rescom.data);
 
         const res = await Axios.get(
-          `https://server-anime-reviews.vercel.app/api/reviews${category}`
+          `https://backend-controlbox.vercel.app/api/reviews${categoria}`
         );
         setbooksReviewsList(res.data);
       } catch (err) {
@@ -43,13 +47,13 @@ function Home() {
       }
     };
     fetchData();
-  }, [category, currentUser, comentarios]);
+  }, [categoria, currentUser, comentarios]);
 
   const booksRatio = (id) => {
     let ratio = [];
 
     comentarios.map((comment) => {
-      if (id === comment.animeId) {
+      if (id === comment.booksId) {
         return ratio.push(Number(comment.ratio));
       } else {
         return null;
@@ -81,11 +85,13 @@ function Home() {
             {filterSearch.map((books) => {
               return (
                 <BooksList
-                  Img={books.animeImg}
-                  booksName={books.animeName}
-                  Synopsis={books.animeSynopsis}
+                  Img={books.booksImg}
+                  booksAutor={books.booksAutor}
+                  booksTitulo={books.booksTitulo}
+                  booksResumen={books.booksResumen}
+                  booksCategoria={books.booksCategoria}
                   Ratio={booksRatio(books.id)}
-                  Type={books.animeType}
+                  Type={books.booksType}
                   key={books.id}
                   id={books.id}
                 />

@@ -18,34 +18,46 @@ function Nav() {
             <ul className="navbar-menu">
               <li>
                 <Link className="navbar-link" to="/">
-                  Home
+                  Inicio
                 </Link>
               </li>
               <li>
                 <Link className="navbar-link" to="/Register">
-                  Register
+                  Registrarse
                 </Link>
               </li>
-              <li>
-                {currentUser ? (
-                  <button className="navbar-button" onClick={logout}>
-                    Logout
-                  </button>
-                ) : (
+
+              {currentUser ? (
+                <>
+                  <li>
+                    <Link className="navbar-link" to="/" onClick={logout}>
+                      Logout
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="navbar-link" to="/User">
+                      Tu cuenta
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <li>
                   <Link className="navbar-link" to="/Login">
                     Login
                   </Link>
-                )}
-              </li>
+                </li>
+              )}
             </ul>
             <div>
               {currentUser ? (
-                <span className="user-logo in"></span>
+                <>
+                  <span className="user-logo in"></span>
+                  <h2>{currentUser?.name}</h2>
+                  <h4>#{currentUser?.id}</h4>
+                </>
               ) : (
                 <span className="user-logo out"></span>
               )}
-              <h2>{currentUser?.name}</h2>
-              <h4>#{currentUser?.id}</h4>
             </div>
           </div>
         </div>

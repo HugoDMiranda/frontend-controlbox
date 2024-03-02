@@ -12,9 +12,7 @@ function Filters({ setSearchInput }) {
         className="search"
         onChange={(e) => setSearchInput(e.target.value)}
       />
-      <Filter filterName="Type" filterTags={filters[1]} />
-      <Filter filterName="Category" filterTags={filters[0]} />
-      <Filter filterName="Status" filterTags={filters[2]} />
+      <Filter filterName="Categoria" filterTags={filters[0]} />
     </div>
   );
 }

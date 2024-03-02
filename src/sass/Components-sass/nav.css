@@ -84,16 +84,6 @@
   text-align: center;
   transition: 0.5s;
 }
-.navbar .con-navbar .dropdown .navbar-info .navbar-menu li button {
-  padding: 10px;
-  background-color: red;
-  width: 200px;
-  border-radius: 25px;
-  transition: 0.5s;
-}
-.navbar .con-navbar .dropdown .navbar-info .navbar-menu li button:hover {
-  scale: 1.05;
-}
 .navbar .con-navbar .dropdown .navbar-info .navbar-menu li .navbar-link {
   background-color: rgb(124, 124, 124);
   text-decoration: none;

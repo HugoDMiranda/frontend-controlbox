@@ -8,8 +8,6 @@ import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 
 function Login() {
-  // const [passLogin, setPassLogin] = useState("");
-  // const [nameLogin, setNameLogin] = useState("");
   const [err, setErr] = useState(null);
 
   const navigate = useNavigate();

@@ -87,6 +87,11 @@
       align-items: center;
       justify-content: space-between;
     }
+    .books-info-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   .booksImg {

@@ -2,7 +2,7 @@ import "../sass/BooksPage.css";
 import React, { useState, useEffect, useContext } from "react";
 import Axios from "axios";
 import Reviews from "../components/Reviews";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
@@ -18,18 +18,20 @@ function BookPage() {
   const [booksRatio, setbooksRatio] = useState();
   const [updatebooks, setUpdatebooks] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    Axios.get(`https://server-anime-reviews.vercel.app/api/reviews/${id}`).then(
+    Axios.get(`https://backend-controlbox.vercel.app/api/reviews/${id}`).then(
       (response) => {
         setbooksPage(response.data[0]);
       }
     );
 
-    Axios.get(
-      `https://server-anime-reviews.vercel.app/api/comments/${id}`
-    ).then((response) => {
-      setbooksComments(response.data);
-    });
+    Axios.get(`https://backend-controlbox.vercel.app/api/comments/${id}`).then(
+      (response) => {
+        setbooksComments(response.data);
+      }
+    );
 
     let ratio = [];
 
@@ -50,12 +52,19 @@ function BookPage() {
     setbooksRatio(promedio);
   }, [id, booksComments, booksRatio]);
 
-  const deleteReview = (id) => {
-    Axios.delete(`https://server-anime-reviews.vercel.app/api/reviews/${id}`);
+  const deleteReview = async (id) => {
+    try {
+      await Axios.delete(
+        `https://backend-controlbox.vercel.app/api/reviews/${id}`
+      );
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const updateReview = (e) => {
-    Axios.put(`https://server-anime-reviews.vercel.app/api/reviews/${id}`, {
+    Axios.put(`https://backend-controlbox.vercel.app/api/reviews/${id}`, {
       id: id,
       newResumen: e.newResumen,
       newAutor: e.newAutor,
@@ -70,7 +79,7 @@ function BookPage() {
     newImg: yup.string().url().required(),
     newAutor: yup.string().required(),
     newTitulo: yup.string().required(),
-    newCategoria: yup.mixed().oneOf(["books", "Movie", "OVA"]).required(),
+    newCategoria: yup.mixed().oneOf(filters[0]).required(),
     newResumen: yup.string().required(),
   });
 
@@ -123,7 +132,7 @@ function BookPage() {
                 type="text"
                 component="select"
               >
-                {filters[1].map((type) => {
+                {filters[0].map((type) => {
                   return <option value={type}>{type}</option>;
                 })}
               </Field>
@@ -167,37 +176,36 @@ function BookPage() {
         </Formik>
       ) : (
         <div className="booksPage-container">
-          <img className="booksImg" alt="booksImg" src={booksPage?.animeImg} />
+          <img className="booksImg" alt="booksImg" src={booksPage?.booksImg} />
           <div className="booksInf">
             {currentUser?.admin === 1 ? (
               <div className="button-container">
                 <button onClick={() => setUpdatebooks(!updatebooks)}>
                   <RxUpdate />
                 </button>
-                <button onClick={deleteReview}>
+                <button onClick={() => deleteReview(id)}>
                   <AiFillDelete />
                 </button>
               </div>
             ) : null}
             <div className="books-name-ratio">
-              <h4 className="booksTexts">
+              <div className="books-info-container">
                 <h2>Titulo de libro: </h2>
-                {booksPage?.animeName}
-              </h4>
-
+                <h4 className="booksTexts">{booksPage?.booksTitulo}</h4>
+              </div>
               <div>
                 <h3>Ratio: </h3>
                 <h4>{isNaN(booksRatio) ? "--" : booksRatio}</h4>
               </div>
             </div>
-            <p className="booksTexts">
-              <h3>Autor: </h3>
-              {booksPage.animeType}
-            </p>
-            <p className="booksTexts">
+            <div className="books-info-container">
+              <h3 className="booksTexts">Autor:</h3>
+              <p>{booksPage.booksAutor}</p>
+            </div>
+            <div className="books-info-container">
               <h3>Resumen:</h3>
-              {booksPage.animeSynopsis}
-            </p>
+              <p className="booksTexts">{booksPage.booksResumen}</p>
+            </div>
           </div>
         </div>
       )}

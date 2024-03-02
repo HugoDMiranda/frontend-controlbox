@@ -88,6 +88,11 @@
   align-items: center;
   justify-content: space-between;
 }
+.booksPage-container .booksInf .books-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .booksPage-container .booksImg {
   width: 270px;
   height: 400px;

@@ -5,6 +5,7 @@ import Home from "../views/Home";
 import { AnimatePresence } from "framer-motion";
 import BookPage from "../views/BookPage";
 import NewBooks from "../views/NewBooks";
+import User from "../views/User";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/NewBooks" element={<NewBooks />} />
         <Route path="/BooksPage/:id" element={<BookPage />} />
+        <Route path="/User" element={<User />} />
       </Routes>
     </AnimatePresence>
   );

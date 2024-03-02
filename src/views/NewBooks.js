@@ -12,7 +12,7 @@ function NewBooks() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    Axios.get("https://server-anime-reviews.vercel.app/api/reviews").then(
+    Axios.get("https://backend-controlbox.vercel.app/api/reviews").then(
       (response) => {
         setbooksReviewsList(response.data);
       }
@@ -20,7 +20,7 @@ function NewBooks() {
   }, [booksReviewsList]);
 
   const submitReview = (e) => {
-    Axios.post("https://server-anime-reviews.vercel.app/api/reviews", {
+    Axios.post("https://backend-controlbox.vercel.app/api/reviews", {
       booksTitulo: e.booksTitulo,
       booksAutor: e.booksAutor,
       booksCategoria: e.booksCategoria,
@@ -44,7 +44,7 @@ function NewBooks() {
     booksImg: yup.string().url().required(),
     booksTitulo: yup.string().required(),
     booksAutor: yup.string().required(),
-    booksCategoria: yup.mixed().oneOf(["books", "Movie", "OVA"]).required(),
+    booksCategoria: yup.mixed().oneOf(filters[0]).required(),
     booksResumen: yup.string().required(),
   });
 
@@ -82,7 +82,7 @@ function NewBooks() {
           />
           <h3>Categoria</h3>
           <Field placeholder="Type" name="booksCategoria" component="select">
-            {filters[1].map((status) => {
+            {filters[0].map((status) => {
               return (
                 <option value={status} key={status}>
                   {status}
